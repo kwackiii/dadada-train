@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>다다다 | 웹 미리보기</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", sans-serif;
+      background: #fff;
+      color: #111;
+    }
+    header {
+      padding: 20px;
+      border-bottom: 1px solid #eee;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .logo {
+      width: 36px;
+      height: 36px;
+      border-radius: 12px;
+      background: #111;
+    }
+    main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+    h1 {
+      font-size: 32px;
+      margin-bottom: 12px;
+    }
+    .cards {
+      margin-top: 40px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+    .card {
+      border: 1px solid #eee;
+      border-radius: 20px;
+      padding: 20px;
+    }
+    footer {
+      margin-top: 60px;
+      padding-top: 20px;
+      border-top: 1px solid #eee;
+      font-size: 13px;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo"></div>
+    <strong>다다다</strong>
+  </header>
+
+  <main>
+    <h1>다다다 공식 웹 미리보기</h1>
+    <p>이 페이지는 말로 수정 요청하면 계속 바뀌는 미리보기용 사이트입니다.</p>
+
+    <div class="cards">
+      <div class="card">
+        <h3>공지</h3>
+        <p>최신 소식 정리</p>
+      </div>
+      <div class="card">
+        <h3>스케줄</h3>
+        <p>공연 일정 확인</p>
+      </div>
+      <div class="card">
+        <h3>문의</h3>
+        <p>섭외 / 제휴</p>
+      </div>
+    </div>
+
+    <footer>
+      © 2026 다다다
+    </footer>
+  </main>
+</body>
+</html>
