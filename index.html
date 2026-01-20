@@ -2,85 +2,556 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <title>다다다 | 웹 미리보기</title>
+  <title>다다다 | 3월 더블싱글 예매</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="다다다 3월 더블싱글 '추락' / '엔딩 전까지 울지마요' 프로모션 예매 페이지" />
   <style>
-    body {
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", sans-serif;
-      background: #fff;
-      color: #111;
+    :root{
+      --bg:#0b0c10;
+      --card:#111319;
+      --line:#242833;
+      --muted:#a8b0c2;
+      --text:#eef2ff;
+      --accent:#7c5cff;
+      --accent2:#36d399;
+      --warn:#ff5c7a;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius:18px;
     }
-    header {
-      padding: 20px;
-      border-bottom: 1px solid #eee;
-      display: flex;
-      align-items: center;
-      gap: 12px;
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;
+      background: radial-gradient(1200px 800px at 20% 0%, rgba(124,92,255,.25), transparent 60%),
+                  radial-gradient(900px 700px at 90% 10%, rgba(54,211,153,.18), transparent 60%),
+                  var(--bg);
+      color:var(--text);
     }
-    .logo {
-      width: 36px;
-      height: 36px;
-      border-radius: 12px;
-      background: #111;
+    a{color:inherit; text-decoration:none}
+    .wrap{max-width:1050px; margin:0 auto; padding:22px 18px 70px}
+    header{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:14px; padding:14px 14px; border:1px solid var(--line);
+      background: rgba(17,19,25,.65);
+      backdrop-filter: blur(10px);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      position: sticky; top: 12px; z-index: 20;
     }
-    main {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 40px 20px;
+    .brand{display:flex; align-items:center; gap:12px}
+    .logo{
+      width:40px; height:40px; border-radius:14px;
+      background: linear-gradient(135deg, rgba(124,92,255,1), rgba(54,211,153,1));
+      box-shadow: 0 8px 22px rgba(124,92,255,.25);
     }
-    h1 {
-      font-size: 32px;
-      margin-bottom: 12px;
+    .brand h1{font-size:14px; margin:0; letter-spacing:.2px}
+    .brand p{margin:2px 0 0; font-size:12px; color:var(--muted)}
+    .nav{display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end}
+    .pill{
+      font-size:12px; padding:10px 12px;
+      border:1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255,255,255,.02);
+      transition: .15s ease;
     }
-    .cards {
-      margin-top: 40px;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 16px;
+    .pill:hover{transform: translateY(-1px); border-color: rgba(124,92,255,.55)}
+    .hero{
+      margin-top:18px;
+      border:1px solid var(--line);
+      background: linear-gradient(180deg, rgba(17,19,25,.85), rgba(17,19,25,.55));
+      border-radius: calc(var(--radius) + 6px);
+      box-shadow: var(--shadow);
+      overflow:hidden;
     }
-    .card {
-      border: 1px solid #eee;
+    .heroTop{
+      padding:26px 22px 18px;
+      display:grid;
+      grid-template-columns: 1.3fr .7fr;
+      gap:18px;
+    }
+    @media (max-width: 860px){
+      .heroTop{grid-template-columns: 1fr}
+      header{position: static}
+    }
+    .tagRow{display:flex; gap:8px; flex-wrap:wrap}
+    .tag{
+      font-size:12px; padding:6px 10px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      color: var(--muted);
+      background: rgba(255,255,255,.02);
+    }
+    .title{
+      margin:12px 0 10px;
+      font-size:28px;
+      line-height:1.2;
+      letter-spacing:-.4px;
+    }
+    .subtitle{
+      margin:0;
+      color: var(--muted);
+      font-size:14px;
+      line-height:1.6;
+      max-width: 52ch;
+    }
+    .ctaRow{margin-top:16px; display:flex; gap:10px; flex-wrap:wrap}
+    .btn{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:11px 14px;
+      border-radius: 14px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      font-size:13px;
+      transition:.15s ease;
+      cursor:pointer;
+    }
+    .btn:hover{transform: translateY(-1px); border-color: rgba(124,92,255,.6)}
+    .btn.primary{
+      border-color: rgba(124,92,255,.55);
+      background: linear-gradient(135deg, rgba(124,92,255,.95), rgba(124,92,255,.55));
+      color:#0b0c10;
+      font-weight:700;
+    }
+    .btn.ghost{color: var(--text)}
+    .panel{
+      padding:18px;
+      border:1px solid var(--line);
       border-radius: 20px;
-      padding: 20px;
+      background: rgba(255,255,255,.02);
     }
-    footer {
-      margin-top: 60px;
-      padding-top: 20px;
-      border-top: 1px solid #eee;
-      font-size: 13px;
-      color: #666;
+    .kv{
+      display:grid; gap:10px;
+      font-size:13px;
+      color: var(--muted);
     }
+    .kv b{color: var(--text); font-weight:700}
+    .divider{
+      height:1px;
+      background: linear-gradient(90deg, transparent, rgba(124,92,255,.55), transparent);
+      opacity:.8;
+    }
+
+    /* Booking */
+    .booking{
+      padding:18px 22px 22px;
+      border-top:1px solid var(--line);
+      background: rgba(8,9,12,.45);
+    }
+    .booking h2{
+      margin:0 0 10px;
+      font-size:14px;
+      letter-spacing:.2px;
+      color: var(--muted);
+    }
+    .formGrid{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr .9fr .9fr .7fr;
+      gap:10px;
+      align-items:end;
+    }
+    @media (max-width: 980px){
+      .formGrid{grid-template-columns: 1fr 1fr; }
+    }
+    .field label{
+      display:block;
+      font-size:12px;
+      color: var(--muted);
+      margin: 0 0 6px;
+    }
+    .field input, .field select{
+      width:100%;
+      padding:11px 12px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      color: var(--text);
+      outline:none;
+      font-size:13px;
+    }
+    .field input::placeholder{color:#7f879a}
+    .helper{
+      margin-top:10px;
+      font-size:12px;
+      color: var(--muted);
+      line-height:1.5;
+    }
+    .helper span{
+      color: #d8def1;
+      font-weight:600;
+    }
+
+    /* Tickets */
+    section{margin-top:18px}
+    .sectionTitle{
+      display:flex; align-items:baseline; justify-content:space-between;
+      gap:10px; flex-wrap:wrap;
+      margin: 22px 0 10px;
+    }
+    .sectionTitle h3{
+      margin:0;
+      font-size:16px;
+      letter-spacing:-.2px;
+    }
+    .sectionTitle p{
+      margin:0;
+      font-size:12px;
+      color: var(--muted);
+    }
+
+    .tickets{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap:12px;
+    }
+    .ticket{
+      grid-column: span 6;
+      border:1px solid var(--line);
+      border-radius: 20px;
+      background: rgba(17,19,25,.65);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+    @media (max-width: 900px){ .ticket{grid-column: span 12;} }
+    .ticket::before{
+      content:"";
+      position:absolute;
+      inset:-60px -80px auto auto;
+      width:220px; height:220px;
+      background: radial-gradient(circle at 30% 30%, rgba(124,92,255,.25), transparent 60%);
+      transform: rotate(12deg);
+      pointer-events:none;
+    }
+    .ticketHd{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 16px;
+      border-bottom:1px dashed rgba(168,176,194,.25);
+    }
+    .route{
+      display:flex; flex-direction:column; gap:4px;
+    }
+    .route .small{font-size:12px; color: var(--muted)}
+    .route .big{font-size:15px; font-weight:800; letter-spacing:-.2px}
+    .badge{
+      font-size:11px;
+      padding:7px 10px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      color: var(--muted);
+      white-space:nowrap;
+    }
+    .ticketBd{
+      padding:14px 16px 16px;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:12px;
+    }
+    .meta{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:10px;
+    }
+    @media (max-width: 520px){ .meta{grid-template-columns: 1fr 1fr;} }
+    .meta .item{
+      border:1px solid rgba(168,176,194,.18);
+      background: rgba(255,255,255,.02);
+      border-radius: 16px;
+      padding:10px 12px;
+    }
+    .meta .k{font-size:11px; color: var(--muted)}
+    .meta .v{margin-top:4px; font-size:13px; font-weight:700}
+    .desc{
+      margin:0;
+      font-size:13px;
+      line-height:1.6;
+      color: #d8def1;
+    }
+    .actions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .actions .btn{padding:10px 12px; border-radius: 14px}
+    .btn.green{
+      border-color: rgba(54,211,153,.45);
+      background: linear-gradient(135deg, rgba(54,211,153,.9), rgba(54,211,153,.55));
+      color:#07110d; font-weight:800;
+    }
+    .btn.red{
+      border-color: rgba(255,92,122,.45);
+      background: rgba(255,92,122,.08);
+      color:#ffdbe3; font-weight:700;
+    }
+
+    /* Footer */
+    .foot{
+      margin-top:28px;
+      border:1px solid var(--line);
+      background: rgba(17,19,25,.55);
+      border-radius: 20px;
+      padding:16px 18px;
+      color: var(--muted);
+      font-size:12px;
+      line-height:1.6;
+    }
+    .foot b{color: var(--text)}
+    .tiny{opacity:.9}
   </style>
 </head>
+
 <body>
-  <header>
-    <div class="logo"></div>
-    <strong>다다다</strong>
-  </header>
-
-  <main>
-    <h1>다다다 공식 웹 미리보기</h1>
-    <p>이 페이지는 말로 수정 요청하면 계속 바뀌는 미리보기용 사이트입니다.</p>
-
-    <div class="cards">
-      <div class="card">
-        <h3>공지</h3>
-        <p>최신 소식 정리</p>
+  <div class="wrap" id="top">
+    <header>
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <h1>다다다 열차예약</h1>
+          <p>3월 더블싱글 프로모션 · "추락" / "엔딩 전까지 울지마요"</p>
+        </div>
       </div>
-      <div class="card">
-        <h3>스케줄</h3>
-        <p>공연 일정 확인</p>
+      <nav class="nav">
+        <a class="pill" href="#booking">예매하기</a>
+        <a class="pill" href="#tickets">콘텐츠 열차</a>
+        <a class="pill" href="#links">공식 링크</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="heroTop">
+        <div>
+          <div class="tagRow">
+            <span class="tag">DOUBLE SINGLE</span>
+            <span class="tag">REAL × VIRTUAL</span>
+            <span class="tag">MARCH</span>
+          </div>
+
+          <h2 class="title">상경이 아니라, 서울로 “추락”해버린 마음.</h2>
+          <p class="subtitle">
+            현실과 가상세계의 경계가 허물어진 곳에서, 도피하고 싶은 마음을 노래합니다.
+            특히 <b>“추락”</b>은 <b>기차/열차</b>의 이미지로 쓰인 곡이에요.
+          </p>
+
+          <div class="ctaRow">
+            <a class="btn primary" href="#tickets">예매(=콘텐츠) 열차 보기</a>
+            <a class="btn ghost" href="#links">유튜브/인스타 바로가기</a>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="kv">
+            <div><b>출발</b> 지방(현실)</div>
+            <div><b>도착</b> 서울(가상에 가까운 현실)</div>
+            <div><b>테마</b> 경계 붕괴 · 현실 도피</div>
+          </div>
+          <div style="margin:14px 0" class="divider"></div>
+          <div class="kv">
+            <div><b>발매</b> 2026년 3월 (일정 확정 시 업데이트)</div>
+            <div><b>구성</b> 더블싱글 2트랙</div>
+            <div><b>트랙</b> “추락” / “엔딩 전까지 울지마요”</div>
+          </div>
+        </div>
       </div>
-      <div class="card">
-        <h3>문의</h3>
-        <p>섭외 / 제휴</p>
+
+      <div class="booking" id="booking">
+        <h2>예매 검색</h2>
+
+        <div class="formGrid">
+          <div class="field">
+            <label>출발역</label>
+            <input id="from" placeholder="예: 지방(현실)" value="지방(현실)" />
+          </div>
+          <div class="field">
+            <label>도착역</label>
+            <input id="to" placeholder="예: 서울(추락)" value="서울(추락)" />
+          </div>
+          <div class="field">
+            <label>출발일</label>
+            <input id="date" type="date" />
+          </div>
+          <div class="field">
+            <label>열차 타입</label>
+            <select id="type">
+              <option value="ALL">전체</option>
+              <option value="PHOTO">컨셉포토</option>
+              <option value="LIVE">라이브클립</option>
+              <option value="TEASER">티저/쇼츠</option>
+              <option value="SOCIAL">SNS 링크</option>
+            </select>
+          </div>
+          <div class="field">
+            <button class="btn primary" style="width:100%" onclick="filterTickets()">검색</button>
+          </div>
+        </div>
+
+        <div class="helper">
+          * 이 사이트에서 <span>예매</span>는 <span>콘텐츠를 여는 행위</span>입니다. “탑승” 버튼을 누르면 해당 콘텐츠로 이동해요.
+        </div>
+      </div>
+    </section>
+
+    <section id="tickets">
+      <div class="sectionTitle">
+        <h3>콘텐츠 열차 목록</h3>
+        <p>각 콘텐츠 = 예매 가능한 열차(탑승하면 바로 이동)</p>
+      </div>
+
+      <div class="tickets" id="ticketGrid">
+        <!-- 1) 트랙 프리뷰/티저 -->
+        <article class="ticket" data-type="TEASER">
+          <div class="ticketHd">
+            <div class="route">
+              <div class="small">출발: 현실(도피) → 도착: 추락(서울)</div>
+              <div class="big">[TEASER] 추락 · 1차 티저 열차</div>
+            </div>
+            <div class="badge">예매 오픈: 추후공지</div>
+          </div>
+          <div class="ticketBd">
+            <div class="meta">
+              <div class="item"><div class="k">편성</div><div class="v">A-101</div></div>
+              <div class="item"><div class="k">소요</div><div class="v">00:30</div></div>
+              <div class="item"><div class="k">좌석</div><div class="v">ALL</div></div>
+            </div>
+            <p class="desc">첫 번째 티저가 업로드되면 “탑승”으로 바로 연결됩니다.</p>
+            <div class="actions">
+              <a class="btn green" href="https://youtube.com" target="_blank" rel="noopener">탑승(유튜브)</a>
+              <button class="btn red" onclick="alert('티저 공개 후 연결됩니다.');">알림</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- 2) 컨셉포토 -->
+        <article class="ticket" data-type="PHOTO">
+          <div class="ticketHd">
+            <div class="route">
+              <div class="small">출발: 현실 → 도착: 가상</div>
+              <div class="big">[PHOTO] 컨셉포토 · 1호차</div>
+            </div>
+            <div class="badge">예매 오픈: 추후공지</div>
+          </div>
+          <div class="ticketBd">
+            <div class="meta">
+              <div class="item"><div class="k">편성</div><div class="v">P-201</div></div>
+              <div class="item"><div class="k">소요</div><div class="v">—</div></div>
+              <div class="item"><div class="k">좌석</div><div class="v">SNS</div></div>
+            </div>
+            <p class="desc">컨셉포토 공개 시 인스타 게시물/하이라이트로 연결.</p>
+            <div class="actions">
+              <a class="btn green" href="https://instagram.com" target="_blank" rel="noopener">탑승(인스타)</a>
+              <a class="btn" href="#links">공식 링크 보기</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 3) 라이브클립 -->
+        <article class="ticket" data-type="LIVE">
+          <div class="ticketHd">
+            <div class="route">
+              <div class="small">출발: 방(현실) → 도착: 무대(가상)</div>
+              <div class="big">[LIVE] 라이브클립 · 3호차</div>
+            </div>
+            <div class="badge">예매 오픈: 추후공지</div>
+          </div>
+          <div class="ticketBd">
+            <div class="meta">
+              <div class="item"><div class="k">편성</div><div class="v">L-303</div></div>
+              <div class="item"><div class="k">소요</div><div class="v">03:xx</div></div>
+              <div class="item"><div class="k">좌석</div><div class="v">ALL</div></div>
+            </div>
+            <p class="desc">라이브클립 공개 시 유튜브로 연결됩니다.</p>
+            <div class="actions">
+              <a class="btn green" href="https://youtube.com" target="_blank" rel="noopener">탑승(유튜브)</a>
+              <button class="btn" onclick="scrollToId('links')">채널 모아보기</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- 4) 공식 링크 -->
+        <article class="ticket" data-type="SOCIAL" id="links">
+          <div class="ticketHd">
+            <div class="route">
+              <div class="small">출발: 지금 → 도착: 다다다 공식</div>
+              <div class="big">[OFFICIAL] 다다다 공식 플랫폼 열차</div>
+            </div>
+            <div class="badge">항시 운행</div>
+          </div>
+          <div class="ticketBd">
+            <div class="meta">
+              <div class="item"><div class="k">유튜브</div><div class="v">공식 채널</div></div>
+              <div class="item"><div class="k">인스타</div><div class="v">공식 계정</div></div>
+              <div class="item"><div class="k">기타</div><div class="v">추가 가능</div></div>
+            </div>
+            <p class="desc">아래 버튼 링크만 실제 계정으로 바꿔주면 바로 완성.</p>
+            <div class="actions">
+              <a class="btn green" href="https://youtube.com" target="_blank" rel="noopener">유튜브</a>
+              <a class="btn" href="https://instagram.com" target="_blank" rel="noopener">인스타그램</a>
+              <a class="btn" href="https://tiktok.com" target="_blank" rel="noopener">틱톡(선택)</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 5) 두 번째 트랙 -->
+        <article class="ticket" data-type="TEASER">
+          <div class="ticketHd">
+            <div class="route">
+              <div class="small">출발: 현실(눈물) → 도착: 엔딩</div>
+              <div class="big">[TEASER] 엔딩 전까지 울지마요 · 티저 열차</div>
+            </div>
+            <div class="badge">예매 오픈: 추후공지</div>
+          </div>
+          <div class="ticketBd">
+            <div class="meta">
+              <div class="item"><div class="k">편성</div><div class="v">E-111</div></div>
+              <div class="item"><div class="k">소요</div><div class="v">00:30</div></div>
+              <div class="item"><div class="k">좌석</div><div class="v">ALL</div></div>
+            </div>
+            <p class="desc">트랙2 티저 공개 시 바로 연결됩니다.</p>
+            <div class="actions">
+              <a class="btn green" href="https://youtube.com" target="_blank" rel="noopener">탑승(유튜브)</a>
+              <button class="btn red" onclick="alert('티저 공개 후 연결됩니다.');">알림</button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <div class="foot">
+      <div class="tiny">
+        <b>안내</b> · 본 페이지는 프로모션/아트워크 컨셉을 위한 “열차 예매 형식”의 사이트입니다.<br/>
+        <b>수정 포인트</b> · “열차 편성(A-101 같은 거)”, “예매 오픈 날짜”, “탑승 링크”, “콘텐츠 추가”는 언제든 바꿀 수 있어요.
       </div>
     </div>
+  </div>
 
-    <footer>
-      © 2026 다다다
-    </footer>
-  </main>
+  <script>
+    // 오늘 날짜 기본값
+    (function setDefaultDate(){
+      const el = document.getElementById("date");
+      if(!el) return;
+      const d = new Date();
+      const yyyy = d.getFullYear();
+      const mm = String(d.getMonth()+1).padStart(2,'0');
+      const dd = String(d.getDate()).padStart(2,'0');
+      el.value = `${yyyy}-${mm}-${dd}`;
+    })();
+
+    function filterTickets(){
+      const type = document.getElementById("type").value;
+      const grid = document.getElementById("ticketGrid");
+      const cards = grid.querySelectorAll(".ticket");
+      cards.forEach(card => {
+        const t = card.getAttribute("data-type");
+        const show = (type === "ALL") || (t === type);
+        card.style.display = show ? "" : "none";
+      });
+      // 검색 후 목록으로 이동
+      document.getElementById("tickets").scrollIntoView({behavior:"smooth", block:"start"});
+    }
+
+    function scrollToId(id){
+      const el = document.getElementById(id);
+      if(el) el.scrollIntoView({behavior:"smooth", block:"start"});
+    }
+  </script>
 </body>
 </html>
