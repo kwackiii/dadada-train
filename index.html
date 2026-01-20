@@ -1,13 +1,13 @@
 <!doctype html>
 <html lang="ko">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>다다다 | 콘텐츠 탑승 예약</title>
 
 <style>
 :root{
-  --bg:#f5f7fa;
+  --bg:#f3f4f6;
   --panel:#ffffff;
   --line:#e5e7eb;
   --text:#111827;
@@ -23,12 +23,29 @@ body{
   color:var(--text);
 }
 
-.container{max-width:1100px;margin:0 auto;padding:32px 20px}
+.container{
+  max-width:1100px;
+  margin:0 auto;
+  padding:32px 20px;
+}
 
-h1{font-size:24px;margin-bottom:24px}
+/* ===== HERO ===== */
+.hero{
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:16px;
+  height:260px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin-bottom:32px;
+  color:var(--muted);
+  font-size:14px;
+}
+/* 👉 여기에 컨셉포토 배경 넣으면 됨 */
 
-/* 검색 박스 */
-.search-box{
+/* ===== SEARCH ===== */
+.search{
   background:var(--panel);
   border:1px solid var(--line);
   border-radius:12px;
@@ -38,15 +55,15 @@ h1{font-size:24px;margin-bottom:24px}
   gap:12px;
 }
 
-.search-box label{
+.search label{
   font-size:12px;
   color:var(--muted);
-  display:block;
   margin-bottom:6px;
+  display:block;
 }
 
-.search-box select,
-.search-box input{
+.search select,
+.search input{
   width:100%;
   padding:10px;
   border:1px solid var(--line);
@@ -54,8 +71,8 @@ h1{font-size:24px;margin-bottom:24px}
   font-size:14px;
 }
 
-.search-box button{
-  padding:0 20px;
+.search button{
+  padding:0 22px;
   border:none;
   border-radius:8px;
   background:var(--primary);
@@ -64,32 +81,43 @@ h1{font-size:24px;margin-bottom:24px}
   cursor:pointer;
 }
 
-/* 결과 */
-.results{margin-top:32px}
+/* ===== RESULTS ===== */
+.results{
+  margin-top:32px;
+}
+
 .train{
   background:var(--panel);
   border:1px solid var(--line);
-  border-radius:12px;
+  border-radius:14px;
   padding:16px;
   display:grid;
-  grid-template-columns:1.2fr 1fr 1fr .6fr .8fr auto;
+  grid-template-columns:140px 1.4fr 1fr 1fr .6fr auto;
+  gap:14px;
   align-items:center;
-  gap:12px;
-  margin-bottom:12px;
+  margin-bottom:14px;
 }
 
-.train .title{font-weight:600}
+.train img{
+  width:100%;
+  height:90px;
+  object-fit:cover;
+  border-radius:10px;
+  background:#ddd;
+}
+
+.title{font-weight:600}
+
 .badge{
   font-size:12px;
-  padding:4px 8px;
+  padding:4px 10px;
   border-radius:999px;
-  display:inline-block;
 }
 .on{background:#dcfce7;color:#166534}
 .soon{background:#fef9c3;color:#854d0e}
 
 .board{
-  padding:8px 14px;
+  padding:8px 16px;
   border:1px solid var(--line);
   border-radius:8px;
   background:white;
@@ -97,13 +125,13 @@ h1{font-size:24px;margin-bottom:24px}
 }
 
 .empty{
+  margin-top:24px;
+  padding:40px;
   text-align:center;
   color:var(--muted);
-  padding:40px 0;
-  background:var(--panel);
   border:1px dashed var(--line);
   border-radius:12px;
-  margin-top:24px;
+  background:var(--panel);
 }
 
 footer{
@@ -118,10 +146,13 @@ footer{
 <body>
 <div class="container">
 
-<h1>콘텐츠 탑승 예약</h1>
+<!-- HERO -->
+<div class="hero">
+  메인 비주얼 영역 (이미지 직접 추가)
+</div>
 
-<!-- 검색 -->
-<div class="search-box">
+<!-- SEARCH -->
+<div class="search">
   <div>
     <label>출발</label>
     <select id="from"></select>
@@ -132,12 +163,12 @@ footer{
   </div>
   <div>
     <label>날짜</label>
-    <input type="date" id="date" />
+    <input type="date" id="date">
   </div>
   <button onclick="search()">조회</button>
 </div>
 
-<!-- 결과 -->
+<!-- RESULTS -->
 <div class="results" id="results"></div>
 
 <footer>
@@ -147,6 +178,7 @@ footer{
 </div>
 
 <script>
+/* ===== BASIC SETUP ===== */
 const tracks=[...Array(10)].map((_,i)=>`트랙${i+1}`);
 const from=document.getElementById("from");
 const to=document.getElementById("to");
@@ -162,43 +194,55 @@ to.value="트랙2";
 const today=new Date().toISOString().split("T")[0];
 document.getElementById("date").value=today;
 
-// 콘텐츠 데이터
+/* ===== DATA ===== */
 const trains=[
   {
-    title:"〈추락〉 Official Teaser",
+    title:"〈추락〉 Concept Photo",
+    image:"./assets/fall.jpg",
     from:"트랙1",
     to:"트랙2",
-    date:"2026-03-05",
-    duration:"1:30",
-    status:"soon",
-    link:"#"
+    date:"2026-03-01",
+    duration:"10 images",
+    status:"on",
+    link:""
   },
   {
-    title:"〈엔딩 전까지 울지마요〉 Live Clip",
+    title:"〈엔딩 전까지 울지마요〉 Teaser",
+    image:"./assets/ending.jpg",
     from:"트랙2",
     to:"트랙3",
-    date:"2026-03-08",
-    duration:"4:12",
-    status:"on",
-    link:"#"
+    date:"2026-03-05",
+    duration:"1:45",
+    status:"soon",
+    link:""
   }
 ];
+
+/* ===== FUNCTIONS ===== */
+function board(link,status){
+  if(link){
+    window.open(link,"_blank");
+  }else{
+    alert(
+      status==="soon"
+      ? "해당 콘텐츠는 곧 탑승 가능합니다."
+      : "콘텐츠를 준비 중입니다."
+    );
+  }
+}
 
 function search(){
   const f=from.value;
   const t=to.value;
   const d=document.getElementById("date").value;
-
-  const filtered=trains.filter(v=>
-    v.from===f && v.to===t && v.date>=d
-  );
-
   const box=document.getElementById("results");
   box.innerHTML="";
 
+  const filtered=trains.filter(v=>v.from===f && v.to===t && v.date>=d);
+
   if(!filtered.length){
     box.innerHTML=`<div class="empty">
-      선택하신 일정에 운행 중인 열차가 없습니다.<br/>
+      선택하신 일정에 운행 중인 열차가 없습니다.<br>
       다른 날짜를 선택해 주세요.
     </div>`;
     return;
@@ -207,12 +251,14 @@ function search(){
   filtered.forEach(v=>{
     box.innerHTML+=`
       <div class="train">
+        <img src="${v.image}" alt="">
         <div class="title">${v.title}</div>
         <div>${v.from} → ${v.to}</div>
-        <div>${v.date}</div>
         <div>${v.duration}</div>
-        <div><span class="badge ${v.status}">${v.status==="on"?"운행중":"운행예정"}</span></div>
-        <button class="board" onclick="location.href='${v.link}'">탑승</button>
+        <div><span class="badge ${v.status}">
+          ${v.status==="on"?"운행중":"운행예정"}
+        </span></div>
+        <button class="board" onclick="board('${v.link}','${v.status}')">탑승</button>
       </div>
     `;
   });
